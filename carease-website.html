@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarEase - Student Car Rental Made Easy | 50% OFF</title>
+    <meta name="description" content="Affordable car rental for students in Melbourne. Get 50% OFF with student verification. Book online in seconds!">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .hidden-page {
+            display: none;
+        }
+        
+        .active-page {
+            display: block;
+        }
+        
+        .nav-link {
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: #667eea;
+        }
+        
+        .student-badge {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+        
+        .star-rating {
+            color: #fbbf24;
+        }
+        
+        /* Mobile menu styles */
+        .mobile-menu {
+            display: none;
+        }
+        
+        .mobile-menu.active {
+            display: block;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center cursor-pointer" onclick="showPage('home')">
+                    <svg class="h-8 w-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                    </svg>
+                    <span class="ml-2 text-2xl font-bold text-gray-900">Car<span class="text-purple-600">Ease</span></span>
+                </div>
+                
+                <!-- Desktop Navigation Links -->
+                <div class="hidden md:flex space-x-8">
+                    <a onclick="showPage('home')" class="nav-link cursor-pointer text-gray-700 font-medium">Home</a>
+                    <a onclick="showPage('vehicles')" class="nav-link cursor-pointer text-gray-700 font-medium">Browse Cars</a>
+                    <a onclick="showPage('how-it-works')" class="nav-link cursor-pointer text-gray-700 font-medium">How It Works</a>
+                    <a onclick="showPage('student')" class="nav-link cursor-pointer text-gray-700 font-medium">Student Discount</a>
+                </div>
+                
+                <!-- Desktop Auth Buttons -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <button onclick="showPage('login')" class="text-gray-700 font-medium hover:text-purple-600">Login</button>
+                    <button onclick="showPage('register')" class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition">Sign Up</button>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button onclick="toggleMobileMenu()" class="text-gray-700 hover:text-purple-600">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile menu -->
+            <div id="mobileMenu" class="mobile-menu md:hidden pb-4">
+                <a onclick="showPage('home'); toggleMobileMenu();" class="block py-2 text-gray-700 hover:text-purple-600">Home</a>
+                <a onclick="showPage('vehicles'); toggleMobileMenu();" class="block py-2 text-gray-700 hover:text-purple-600">Browse Cars</a>
+                <a onclick="showPage('how-it-works'); toggleMobileMenu();" class="block py-2 text-gray-700 hover:text-purple-600">How It Works</a>
+                <a onclick="showPage('student'); toggleMobileMenu();" class="block py-2 text-gray-700 hover:text-purple-600">Student Discount</a>
+                <a onclick="showPage('login'); toggleMobileMenu();" class="block py-2 text-gray-700 hover:text-purple-600">Login</a>
+                <button onclick="showPage('register'); toggleMobileMenu();" class="w-full mt-2 bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition">Sign Up</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Container -->
+    <div id="page-container">
+        
+        <!-- HOME PAGE -->
+        <div id="home" class="active-page">
+            <!-- Hero Section -->
+            <section class="gradient-bg text-white py-12 md:py-20">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+                        <div>
+                            <div class="inline-block mb-4">
+                                <span class="student-badge text-white px-4 py-2 rounded-full text-sm font-bold">
+                                    🎓 50% OFF for Students!
+                                </span>
+                            </div>
+                            <h1 class="text-3xl md:text-5xl font-bold mb-6 leading-tight">
+                                Affordable Car Rental for Students
+                            </h1>
+                            <p class="text-lg md:text-xl mb-8 text-purple-100">
+                                Save 50% on your car rental. Perfect for trips, dates, deliveries, or just getting around Melbourne.
+                            </p>
+                            
+                            <!-- Search Form -->
+                            <div class="bg-white rounded-lg shadow-2xl p-4 md:p-6">
+                                <h3 class="text-gray-900 font-semibold mb-4 text-lg md:text-xl">Find Your Perfect Car</h3>
+                                <div class="grid md:grid-cols-3 gap-4">
+                                    <div>
+                                        <label class="text-gray-700 text-sm font-medium mb-2 block">Location</label>
+                                        <input type="text" placeholder="Melbourne" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-gray-900">
+                                    </div>
+                                    <div>
+                                        <label class="text-gray-700 text-sm font-medium mb-2 block">Pick-up Date</label>
+                                        <input type="date" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-gray-900">
+                                    </div>
+                                    <div>
+                                        <label class="text-gray-700 text-sm font-medium mb-2 block">Return Date</label>
+                                        <input type="date" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-gray-900">
+                                    </div>
+                                </div>
+                                <button onclick="showPage('vehicles')" class="w-full bg-purple-600 text-white py-3 rounded-lg font-semibold mt-4 hover:bg-purple-700 transition">
+                                    Search Cars
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="hidden md:block">
+                            <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=600&h=400&fit=crop" alt="Car" class="rounded-lg shadow-2xl">
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Trust Indicators -->
+            <section class="py-8 md:py-12 bg-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 text-center">
+                        <div>
+                            <div class="text-3xl md:text-4xl font-bold text-purple-600 mb-2">2,000+</div>
+                            <div class="text-sm md:text-base text-gray-600">Happy Students</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl md:text-4xl font-bold text-purple-600 mb-2">500+</div>
+                            <div class="text-sm md:text-base text-gray-600">Available Cars</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl md:text-4xl font-bold text-purple-600 mb-2">4.8★</div>
+                            <div class="text-sm md:text-base text-gray-600">Average Rating</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl md:text-4xl font-bold text-purple-600 mb-2">50%</div>
+                            <div class="text-sm md:text-base text-gray-600">Student Discount</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Featured Cars -->
+            <section class="py-12 md:py-16">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-8 md:mb-12">
+                        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Featured Cars</h2>
+                        <p class="text-lg md:text-xl text-gray-600">Popular choices among students</p>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                        <!-- Car Card 1 -->
+                        <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover cursor-pointer" onclick="showPage('vehicle-detail')">
+                            <img src="https://images.unsplash.com/photo-1590362891991-f776e747a588?w=400&h=300&fit=crop" alt="Toyota Corolla" class="w-full h-48 object-cover">
+                            <div class="p-4 md:p-6">
+                                <div class="flex justify-between items-start mb-3">
+                                    <div>
+                                        <h3 class="text-lg md:text-xl font-bold text-gray-900">Toyota Corolla</h3>
+                                        <p class="text-sm md:text-base text-gray-600">2022 • Automatic</p>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="text-xs md:text-sm text-gray-500 line-through">$60/day</div>
+                                        <div class="text-lg md:text-xl font-bold text-purple-600">$30/day</div>
+                                        <div class="text-xs text-green-600 font-semibold">Student Price</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center mb-3">
+                                    <span class="star-rating text-sm md:text-base">★★★★★</span>
+                                    <span class="ml-2 text-gray-600 text-xs md:text-sm">4.9 (127 reviews)</span>
+                                </div>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="px-3 py-1 bg-gray-100 rounded-full text-xs">5 Seats</span>
+                                    <span class="px-3 py-1 bg-gray-100 rounded-full text-xs">Bluetooth</span>
+                                    <span class="px-3 py-1 bg-gray-100 rounded-full text-xs">GPS</span>
+                                </div>
+                                <div class="text-sm text-gray-600 mb-4">📍 Carlton, Melbourne</div>
+                                <button class="w-full bg-purple-600 text-white py-2 md:py-3 rounded-lg font-semibold hover:bg-purple-700 transition">
+                                    Book Now
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Car Card 2 -->
+                        <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover cursor-pointer" onclick="showPage('vehicle-detail')">
+                            <img src="https://images.unsplash.com/photo-1617531653332-bd46c24f2068?w=400&h=300&fit=crop" alt="Honda Civic" class="w-full h-48 object-cover">
+                            <div class="p-4 md:p-6">
+                                <div class="flex justify-between items-start mb-3">
+                                    <div>
+                                        <h3 class="text-lg md:text-xl font-bold text-gray-900">Honda Civic</h3>
+                                        <p class="text-sm md:text-base text-gray-600">2023 • Automatic</p>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="text-xs md:text-sm text-gray-500 line-through">$70/day</div>
+                                        <div class="text-lg md:text-xl font-bold text-purple-600">$35/day</div>
+                                        <div class="text-xs text-green-600 font-semibold">Student Price</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center mb-3">
+                                    <span class="star-rating text-sm md:text-base">★★★★★</span>
+                                    <span class="ml-2 text-gray-600 text-xs md:text-sm">4.8 (93 reviews)</span>
+                                </div>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="px-3 py-1 bg-gray-100 rounded-full text-xs">5 Seats</span>
+                                    <span class="px-3 py-1 bg-gray-100 rounded-full text-xs">Backup Cam</span>
+                                    <span class="px-3 py-1 bg-gray-100 rounded-full text-xs">USB</span>
+                                </div>
+                                <div class="text-sm text-gray-600 mb-4">📍 Southbank, Melbourne</div>
+                                <button class="w-full bg-purple-600 text-white py-2 md:py-3 rounded-lg font-semibold hover:bg-purple-700 transition">
+                                    Book Now
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Car Card 3 -->
+                        <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover cursor-pointer" onclick="showPage('vehicle-detail')">
+                            <img src="https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=400&h=300&fit=crop" alt="Mazda 3" class="w-full h-48 object-cover">
+                            <div class="p-4 md:p-6">
+                                <div class="flex justify-between items-start mb-3">
+                                    <div>
+                                        <h3 class="text-lg md:text-xl font-bold text-gray-900">Mazda 3</h3>
+                                        <p class="text-sm md:text-base text-gray-600">2022 • Automatic</p>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="text-xs md:text-sm text-gray-500 line-through">$65/day</div>
+                                        <div class="text-lg md:text-xl font-bold text-purple-600">$32.50/day</div>
+                                        <div class="text-xs text-green-600 font-semibold">Student Price</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center mb-3">
+                                    <span class="star-rating text-sm md:text-base">★★★★★</span>
+                                    <span class="ml-2 text-gray-600 text-xs md:text-sm">4.9 (156 reviews)</span>
+                                </div>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="px-3 py-1 bg-gray-100 rounded-full text-xs">5 Seats</span>
+                                    <span class="px-3 py-1 bg-gray-100 rounded-full text-xs">Apple CarPlay</span>
+                                    <span class="px-3 py-1 bg-gray-100 rounded-full text-xs">Cruise</span>
+                                </div>
+                                <div class="text-sm text-gray-600 mb-4">📍 Parkville, Melbourne</div>
+                                <button class="w-full bg-purple-600 text-white py-2 md:py-3 rounded-lg font-semibold hover:bg-purple-700 transition">
+                                    Book Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mt-8 md:mt-10">
+                        <button onclick="showPage('vehicles')" class="bg-gray-900 text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-800 transition">
+                            View All Cars →
+                        </button>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- How It Works -->
+            <section class="py-12 md:py-16 bg-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-8 md:mb-12">
+                        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">How CarEase Works</h2>
+                        <p class="text-lg md:text-xl text-gray-600">Get on the road in 3 simple steps</p>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-3 gap-6 md:gap-8">
+                        <div class="text-center">
+                            <div class="w-16 h-16 md:w-20 md:h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <span class="text-2xl md:text-3xl font-bold text-purple-600">1</span>
+                            </div>
+                            <h3 class="text-lg md:text-xl font-bold text-gray-900 mb-3">Search & Compare</h3>
+                            <p class="text-sm md:text-base text-gray-600">Browse hundreds of cars near you. Filter by price, location, and features.</p>
+                        </div>
+                        
+                        <div class="text-center">
+                            <div class="w-16 h-16 md:w-20 md:h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <span class="text-2xl md:text-3xl font-bold text-purple-600">2</span>
+                            </div>
+                            <h3 class="text-lg md:text-xl font-bold text-gray-900 mb-3">Book Instantly</h3>
+                            <p class="text-sm md:text-base text-gray-600">Verify your student status and get 50% off. Book online in seconds.</p>
+                        </div>
+                        
+                        <div class="text-center">
+                            <div class="w-16 h-16 md:w-20 md:h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <span class="text-2xl md:text-3xl font-bold text-purple-600">3</span>
+                            </div>
+                            <h3 class="text-lg md:text-xl font-bold text-gray-900 mb-3">Drive Away</h3>
+                            <p class="text-sm md:text-base text-gray-600">Pick up your car and hit the road. Return it when you're done!</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Student Discount Banner -->
+            <section class="py-12 md:py-16">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="gradient-bg rounded-2xl p-8 md:p-12 text-center text-white">
+                        <h2 class="text-3xl md:text-4xl font-bold mb-4">🎓 Student? Get 50% OFF!</h2>
+                        <p class="text-lg md:text-xl mb-8 text-purple-100">Show your student ID and save big on every rental</p>
+                        <div class="flex flex-col sm:flex-row justify-center gap-4">
+                            <button onclick="showPage('register')" class="bg-white text-purple-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition">
+                                Sign Up Free
+                            </button>
+                            <button onclick="showPage('student')" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-purple-600 transition">
+                                Learn More
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <!-- VEHICLES LIST PAGE -->
+        <div id="vehicles" class="hidden-page">
+            <section class="py-8 md:py-12">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6 md:mb-8">Browse Available Cars</h1>
+                    
+                    <div class="grid md:grid-cols-4 gap-6 md:gap-8">
+                        <!-- Filters Sidebar -->
+                        <div class="md:col-span-1">
+                            <div class="bg-white rounded-lg shadow-lg p-4 md:p-6 sticky top-20">
+                                <h3 class="font-bold text-base md:text-lg mb-4">Filters</h3>
+                                
+                                <div class="mb-6">
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Price Range</label>
+                                    <select class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm">
+                                        <option>Any Price</option>
+                                        <option>$0 - $30</option>
+                                        <option>$30 - $50</option>
+                                        <option>$50 - $70</option>
+                                        <option>$70+</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="mb-6">
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Car Type</label>
+                                    <div class="space-y-2">
+                                        <label class="flex items-center">
+                                            <input type="checkbox" class="rounded text-purple-600">
+                                            <span class="ml-2 text-sm">Sedan</span>
+                                        </label>
+                                        <label class="flex items-center">
+                                            <input type="checkbox" class="rounded text-purple-600">
+                                            <span class="ml-2 text-sm">SUV</span>
+                                        </label>
+                                        <label class="flex items-center">
+                                            <input type="checkbox" class="rounded text-purple-600">
+                                            <span class="ml-2 text-sm">Hatchback</span>
+                                        </label>
+                                        <label class="flex items-center">
+                                            <input type="checkbox" class="rounded text-purple-600">
+                                            <span class="ml-2 text-sm">Ute</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <button class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition text-sm">
+                                    Apply Filters
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Cars Grid -->
+                        <div class="md:col-span-3">
+                            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+                                <p class="text-sm md:text-base text-gray-600">Showing 127 cars</p>
+                                <select class="w-full sm:w-auto px-4 py-2 border border-gray-300 rounded-lg text-sm">
+                                    <option>Sort by: Recommended</option>
+                                    <option>Price: Low to High</option>
+                                    <option>Price: High to Low</option>
+                                    <option>Rating: High to Low</option>
+                                </select>
+                            </div>
+                            
+                            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+                                <!-- Car cards (6 examples) -->
+                                <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover cursor-pointer" onclick="showPage('vehicle-detail')">
+                                    <img src="https://images.unsplash.com/photo-1590362891991-f776e747a588?w=400&h=300&fit=crop" alt="Car" class="w-full h-40 md:h-48 object-cover">
+                                    <div class="p-3 md:p-4">
+                                        <h3 class="font-bold text-base md:text-lg mb-1">Toyota Corolla</h3>
+                                        <p class="text-gray-600 text-xs md:text-sm mb-2">2022 • Auto</p>
+                                        <div class="flex items-center mb-2">
+                                            <span class="star-rating text-xs md:text-sm">★★★★★</span>
+                                            <span class="ml-1 text-gray-600 text-xs">4.9</span>
+                                        </div>
+                                        <div class="flex justify-between items-center">
+                                            <div>
+                                                <span class="text-xs md:text-sm text-gray-500 line-through">$60</span>
+                                                <span class="text-lg md:text-xl font-bold text-purple-600 ml-1">$30</span>
+                                                <span class="text-xs text-gray-600">/day</span>
+                                            </div>
+                                            <button class="bg-purple-600 text-white px-3 md:px-4 py-1 md:py-2 rounded text-xs md:text-sm hover:bg-purple-700 transition">
+                                                Book
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover cursor-pointer" onclick="showPage('vehicle-detail')">
+                                    <img src="https://images.unsplash.com/photo-1617531653332-bd46c24f2068?w=400&h=300&fit=crop" alt="Car" class="w-full h-40 md:h-48 object-cover">
+                                    <div class="p-3 md:p-4">
+                                        <h3 class="font-bold text-base md:text-lg mb-1">Honda Civic</h3>
+                                        <p class="text-gray-600 text-xs md:text-sm mb-2">2023 • Auto</p>
+                                        <div class="flex items-center mb-2">
+                                            <span class="star-rating text-xs md:text-sm">★★★★★</span>
+                                            <span class="ml-1 text-gray-600 text-xs">4.8</span>
+                                        </div>
+                                        <div class="flex justify-between items-center">
+                                            <div>
+                                                <span class="text-xs md:text-sm text-gray-500 line-through">$70</span>
+                                                <span class="text-lg md:text-xl font-bold text-purple-600 ml-1">$35</span>
+                                                <span class="text-xs text-gray-600">/day</span>
+                                            </div>
+                                            <button class="bg-purple-600 text-white px-3 md:px-4 py-1 md:py-2 rounded text-xs md:text-sm hover:bg-purple-700 transition">
+                                                Book
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover cursor-pointer" onclick="showPage('vehicle-detail')">
+                                    <img src="https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=400&h=300&fit=crop" alt="Car" class="w-full h-40 md:h-48 object-cover">
+                                    <div class="p-3 md:p-4">
+                                        <h3 class="font-bold text-base md:text-lg mb-1">Mazda 3</h3>
+                                        <p class="text-gray-600 text-xs md:text-sm mb-2">2022 • Auto</p>
+                                        <div class="flex items-center mb-2">
+                                            <span class="star-rating text-xs md:text-sm">★★★★★</span>
+                                            <span class="ml-1 text-gray-600 text-xs">4.9</span>
+                                        </div>
+                                        <div class="flex justify-between items-center">
+                                            <div>
+                                                <span class="text-xs md:text-sm text-gray-500 line-through">$65</span>
+                                                <span class="text-lg md:text-xl font-bold text-purple-600 ml-1">$32.50</span>
+                                                <span class="text-xs text-gray-600">/day</span>
+                                            </div>
+                                            <button class="bg-purple-600 text-white px-3 md:px-4 py-1 md:py-2 rounded text-xs md:text-sm hover:bg-purple-700 transition">
+                                                Book
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover cursor-pointer" onclick="showPage('vehicle-detail')">
+                                    <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=400&h=300&fit=crop" alt="Car" class="w-full h-40 md:h-48 object-cover">
+                                    <div class="p-3 md:p-4">
+                                        <h3 class="font-bold text-base md:text-lg mb-1">Hyundai i30</h3>
+                                        <p class="text-gray-600 text-xs md:text-sm mb-2">2021 • Auto</p>
+                                        <div class="flex items-center mb-2">
+                                            <span class="star-rating text-xs md:text-sm">★★★★☆</span>
+                                            <span class="ml-1 text-gray-600 text-xs">4.6</span>
+                                        </div>
+                                        <div class="flex justify-between items-center">
+                                            <div>
+                                                <span class="text-xs md:text-sm text-gray-500 line-through">$55</span>
+                                                <span class="text-lg md:text-xl font-bold text-purple-600 ml-1">$27.50</span>
+                                                <span class="text-xs text-gray-600">/day</span>
+                                            </div>
+                                            <button class="bg-purple-600 text-white px-3 md:px-4 py-1 md:py-2 rounded text-xs md:text-sm hover:bg-purple-700 transition">
+                                                Book
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover cursor-pointer" onclick="showPage('vehicle-detail')">
+                                    <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=400&h=300&fit=crop" alt="Car" class="w-full h-40 md:h-48 object-cover">
+                                    <div class="p-3 md:p-4">
+                                        <h3 class="font-bold text-base md:text-lg mb-1">Tesla Model 3</h3>
+                                        <p class="text-gray-600 text-xs md:text-sm mb-2">2023 • Auto</p>
+                                        <div class="flex items-center mb-2">
+                                            <span class="star-rating text-xs md:text-sm">★★★★★</span>
+                                            <span class="ml-1 text-gray-600 text-xs">5.0</span>
+                                        </div>
+                                        <div class="flex justify-between items-center">
+                                            <div>
+                                                <span class="text-xs md:text-sm text-gray-500 line-through">$120</span>
+                                                <span class="text-lg md:text-xl font-bold text-purple-600 ml-1">$60</span>
+                                                <span class="text-xs text-gray-600">/day</span>
+                                            </div>
+                                            <button class="bg-purple-600 text-white px-3 md:px-4 py-1 md:py-2 rounded text-xs md:text-sm hover:bg-purple-700 transition">
+                                                Book
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover cursor-pointer" onclick="showPage('vehicle-detail')">
+                                    <img src="https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=400&h=300&fit=crop" alt="Car" class="w-full h-40 md:h-48 object-cover">
+                                    <div class="p-3 md:p-4">
+                                        <h3 class="font-bold text-base md:text-lg mb-1">Kia Cerato</h3>
+                                        <p class="text-gray-600 text-xs md:text-sm mb-2">2022 • Auto</p>
+                                        <div class="flex items-center mb-2">
+                                            <span class="star-rating text-xs md:text-sm">★★★★★</span>
+                                            <span class="ml-1 text-gray-600 text-xs">4.7</span>
+                                        </div>
+                                        <div class="flex justify-between items-center">
+                                            <div>
+                                                <span class="text-xs md:text-sm text-gray-500 line-through">$58</span>
+                                                <span class="text-lg md:text-xl font-bold text-purple-600 ml-1">$29</span>
+                                                <span class="text-xs text-gray-600">/day</span>
+                                            </div>
+                                            <button class="bg-purple-600 text-white px-3 md:px-4 py-1 md:py-2 rounded text-xs md:text-sm hover:bg-purple-700 transition">
+                                                Book
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <!-- VEHICLE DETAIL PAGE -->
+        <div id="vehicle-detail" class="hidden-page">
+            <section class="py-8 md:py-12">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <button onclick="showPage('vehicles')" class="text-purple-600 mb-4 md:mb-6 hover:underline text-sm md:text-base">← Back to All Cars</button>
+                    
+                    <div class="grid md:grid-cols-2 gap-6 md:gap-8">
+                        <!-- Photo Gallery -->
+                        <div>
+                            <img src="https://images.unsplash.com/photo-1590362891991-f776e747a588?w=800&h=600&fit=crop" alt="Toyota Corolla" class="w-full rounded-lg shadow-lg mb-4">
+                            <div class="grid grid-cols-4 gap-2">
+                                <img src="https://images.unsplash.com/photo-1590362891991-f776e747a588?w=200&h=150&fit=crop" class="rounded cursor-pointer">
+                                <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=200&h=150&fit=crop" class="rounded cursor-pointer">
+                                <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=200&h=150&fit=crop" class="rounded cursor-pointer">
+                                <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=200&h=150&fit=crop" class="rounded cursor-pointer">
+                            </div>
+                        </div>
+                        
+                        <!-- Booking Panel -->
+                        <div>
+                            <div class="bg-white rounded-lg shadow-lg p-4 md:p-6 mb-6">
+                                <h1 class="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Toyota Corolla 2022</h1>
+                                <div class="flex items-center mb-4">
+                                    <span class="star-rating text-base md:text-lg">★★★★★</span>
+                                    <span class="ml-2 text-sm md:text-base text-gray-600">4.9 (127 reviews)</span>
+                                </div>
+                                
+                                <div class="border-t border-b py-4 mb-4">
+                                    <div class="flex justify-between items-center mb-2">
+                                        <span class="text-sm md:text-base text-gray-600">Regular Price:</span>
+                                        <span class="text-lg md:text-xl text-gray-500 line-through">$60/day</span>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-base md:text-lg text-gray-900 font-semibold">Student Price:</span>
+                                        <span class="text-2xl md:text-3xl font-bold text-purple-600">$30/day</span>
+                                    </div>
+                                    <div class="bg-green-50 text-green-700 px-3 py-2 rounded mt-2 text-xs md:text-sm text-center">
+                                        🎓 You save $30/day with student discount!
+                                    </div>
+                                </div>
+                                
+                                <!-- Booking Form -->
+                                <div class="space-y-4">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Pick-up Date</label>
+                                        <input type="date" class="w-full px-4 py-2 md:py-3 border border-gray-300 rounded-lg text-sm md:text-base" value="2025-01-15">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Return Date</label>
+                                        <input type="date" class="w-full px-4 py-2 md:py-3 border border-gray-300 rounded-lg text-sm md:text-base" value="2025-01-17">
+                                    </div>
+                                    
+                                    <div class="bg-gray-50 p-3 md:p-4 rounded-lg text-sm md:text-base">
+                                        <div class="flex justify-between mb-2">
+                                            <span class="text-gray-600">2 days × $30</span>
+                                            <span class="font-semibold">$60</span>
+                                        </div>
+                                        <div class="flex justify-between mb-2">
+                                            <span class="text-gray-600">Service fee</span>
+                                            <span class="font-semibold">$8</span>
+                                        </div>
+                                        <div class="border-t pt-2 flex justify-between">
+                                            <span class="font-bold text-base md:text-lg">Total</span>
+                                            <span class="font-bold text-xl md:text-2xl text-purple-600">$68</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <button onclick="showPage('dashboard')" class="w-full bg-purple-600 text-white py-3 md:py-4 rounded-lg font-bold text-base md:text-lg hover:bg-purple-700 transition">
+                                        Book Now
+                                    </button>
+                                    
+                                    <p class="text-xs md:text-sm text-gray-600 text-center">You won't be charged yet</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Owner Info -->
+                            <div class="bg-white rounded-lg shadow-lg p-4 md:p-6">
+                                <h3 class="font-bold text-base md:text-lg mb-4">Hosted by</h3>
+                                <div class="flex items-center">
+                                    <div class="w-10 h-10 md:w-12 md:h-12 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold text-lg md:text-xl">
+                                        J
+                                    </div>
+                                    <div class="ml-4">
+                                        <p class="font-semibold text-sm md:text-base">John's Rentals</p>
+                                        <p class="text-gray-600 text-xs md:text-sm">127 rentals • Joined 2022</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Vehicle Details -->
+                    <div class="mt-8 bg-white rounded-lg shadow-lg p-4 md:p-8">
+                        <h2 class="text-xl md:text-2xl font-bold mb-4 md:mb-6">Vehicle Details</h2>
+                        
+                        <div class="grid md:grid-cols-3 gap-6 md:gap-8 mb-6 md:mb-8">
+                            <div>
+                                <h3 class="font-semibold mb-3 text-sm md:text-base">Specifications</h3>
+                                <ul class="space-y-2 text-gray-600 text-sm md:text-base">
+                                    <li>🚗 Automatic Transmission</li>
+                                    <li>⛽ Petrol</li>
+                                    <li>👥 5 Seats</li>
+                                    <li>🚪 4 Doors</li>
+                                    <li>📅 2022 Model</li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h3 class="font-semibold mb-3 text-sm md:text-base">Features</h3>
+                                <ul class="space-y-2 text-gray-600 text-sm md:text-base">
+                                    <li>✓ Bluetooth</li>
+                                    <li>✓ GPS Navigation</li>
+                                    <li>✓ Backup Camera</li>
+                                    <li>✓ USB Charging</li>
+                                    <li>✓ Air Conditioning</li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h3 class="font-semibold mb-3 text-sm md:text-base">Location</h3>
+                                <p class="text-gray-600 mb-2 text-sm md:text-base">📍 Carlton, Melbourne VIC 3053</p>
+                                <p class="text-xs md:text-sm text-gray-500">Near University of Melbourne</p>
+                            </div>
+                        </div>
+                        
+                        <div class="border-t pt-6 md:pt-8">
+                            <h2 class="text-xl md:text-2xl font-bold mb-4 md:mb-6">Reviews (127)</h2>
+                            
+                            <!-- Review 1 -->
+                            <div class="mb-6 pb-6 border-b">
+                                <div class="flex items-center mb-3">
+                                    <div class="w-8 h-8 md:w-10 md:h-10 bg-gray-300 rounded-full flex items-center justify-center font-bold text-sm md:text-base">
+                                        S
+                                    </div>
+                                    <div class="ml-3">
+                                        <p class="font-semibold text-sm md:text-base">Sarah M.</p>
+                                        <div class="flex items-center">
+                                            <span class="star-rating text-xs md:text-sm">★★★★★</span>
+                                            <span class="text-gray-500 text-xs md:text-sm ml-2">Dec 2024</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-gray-700 text-sm md:text-base">Perfect car for my weekend trip! John was super responsive and the car was spotless. Great value with the student discount!</p>
+                            </div>
+                            
+                            <!-- Review 2 -->
+                            <div class="mb-6 pb-6 border-b">
+                                <div class="flex items-center mb-3">
+                                    <div class="w-8 h-8 md:w-10 md:h-10 bg-gray-300 rounded-full flex items-center justify-center font-bold text-sm md:text-base">
+                                        M
+                                    </div>
+                                    <div class="ml-3">
+                                        <p class="font-semibold text-sm md:text-base">Mike T.</p>
+                                        <div class="flex items-center">
+                                            <span class="star-rating text-xs md:text-sm">★★★★★</span>
+                                            <span class="text-gray-500 text-xs md:text-sm ml-2">Nov 2024</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-gray-700 text-sm md:text-base">Excellent experience! The car runs smoothly and was exactly as described. Would definitely rent again.</p>
+                            </div>
+                            
+                            <button class="text-purple-600 font-semibold hover:underline text-sm md:text-base">View all 127 reviews →</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <!-- LOGIN PAGE -->
+        <div id="login" class="hidden-page">
+            <section class="py-12 md:py-16">
+                <div class="max-w-md mx-auto px-4">
+                    <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                        <h2 class="text-2xl md:text-3xl font-bold text-center mb-2">Welcome Back</h2>
+                        <p class="text-gray-600 text-center mb-6 md:mb-8 text-sm md:text-base">Log in to your CarEase account</p>
+                        
+                        <form class="space-y-4 md:space-y-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                                <input type="email" placeholder="your.email@student.edu.au" class="w-full px-4 py-2 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm md:text-base">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                                <input type="password" placeholder="••••••••" class="w-full px-4 py-2 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm md:text-base">
+                            </div>
+                            
+                            <div class="flex items-center justify-between text-sm">
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="rounded text-purple-600">
+                                    <span class="ml-2 text-gray-600">Remember me</span>
+                                </label>
+                                <a href="#" class="text-purple-600 hover:underline">Forgot password?</a>
+                            </div>
+                            
+                            <button onclick="showPage('dashboard')" type="button" class="w-full bg-purple-600 text-white py-2 md:py-3 rounded-lg font-semibold hover:bg-purple-700 transition text-sm md:text-base">
+                                Log In
+                            </button>
+                        </form>
+                        
+                        <p class="text-center mt-6 text-gray-600 text-sm md:text-base">
+                            Don't have an account? 
+                            <a onclick="showPage('register')" class="text-purple-600 font-semibold hover:underline cursor-pointer">Sign up</a>
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <!-- REGISTER PAGE -->
+        <div id="register" class="hidden-page">
+            <section class="py-12 md:py-16">
+                <div class="max-w-2xl mx-auto px-4">
+                    <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                        <h2 class="text-2xl md:text-3xl font-bold text-center mb-2">Create Your Account</h2>
+                        <p class="text-gray-600 text-center mb-6 md:mb-8 text-sm md:text-base">Join thousands of students saving on car rentals</p>
+                        
+                        <form class="space-y-4 md:space-y-6">
+                            <div class="grid md:grid-cols-2 gap-4 md:gap-6">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">First Name</label>
+                                    <input type="text" placeholder="John" class="w-full px-4 py-2 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm md:text-base">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
+                                    <input type="text" placeholder="Doe" class="w-full px-4 py-2 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm md:text-base">
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                                <input type="email" placeholder="your.email@student.edu.au" class="w-full px-4 py-2 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm md:text-base">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Phone</label>
+                                <input type="tel" placeholder="+61 4XX XXX XXX" class="w-full px-4 py-2 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm md:text-base">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                                <input type="password" placeholder="••••••••" class="w-full px-4 py-2 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm md:text-base">
+                            </div>
+                            
+                            <div class="bg-purple-50 p-4 rounded-lg">
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="checkbox" id="studentCheck" class="rounded text-purple-600">
+                                    <span class="ml-2 text-sm font-medium">I'm a student (Get 50% OFF!)</span>
+                                </label>
+                                
+                                <div id="studentFields" class="mt-4 space-y-4" style="display:none;">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">University/Institution</label>
+                                        <select class="w-full px-4 py-2 md:py-3 border border-gray-300 rounded-lg text-sm md:text-base">
+                                            <option>Select your institution</option>
+                                            <option>University of Melbourne</option>
+                                            <option>Monash University</option>
+                                            <option>RMIT University</option>
+                                            <option>Deakin University</option>
+                                            <option>La Trobe University</option>
+                                            <option>Other</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Student Email</label>
+                                        <input type="email" placeholder="your.email@student.edu.au" class="w-full px-4 py-2 md:py-3 border border-gray-300 rounded-lg text-sm md:text-base">
+                                        <p class="text-xs text-gray-500 mt-1">You'll verify this later to unlock 50% discount</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="flex items-center text-sm">
+                                    <input type="checkbox" class="rounded text-purple-600">
+                                    <span class="ml-2 text-gray-600">
+                                        I agree to the <a href="#" class="text-purple-600 hover:underline">Terms & Conditions</a>
+                                    </span>
+                                </label>
+                            </div>
+                            
+                            <button onclick="showPage('dashboard')" type="button" class="w-full bg-purple-600 text-white py-2 md:py-3 rounded-lg font-semibold hover:bg-purple-700 transition text-sm md:text-base">
+                                Create Account
+                            </button>
+                        </form>
+                        
+                        <p class="text-center mt-6 text-gray-600 text-sm md:text-base">
+                            Already have an account? 
+                            <a onclick="showPage('login')" class="text-purple-600 font-semibold hover:underline cursor-pointer">Log in</a>
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <!-- DASHBOARD PAGE -->
+        <div id="dashboard" class="hidden-page">
+            <section class="py-8 md:py-12">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-2">Welcome back, John! 👋</h1>
+                    <p class="text-gray-600 mb-6 md:mb-8 text-sm md:text-base">Here's your rental activity</p>
+                    
+                    <!-- Stats Grid -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-6 md:mb-8">
+                        <div class="bg-white rounded-lg shadow-lg p-4 md:p-6">
+                            <p class="text-gray-600 mb-2 text-xs md:text-base">Total Bookings</p>
+                            <p class="text-2xl md:text-3xl font-bold text-purple-600">12</p>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-lg p-4 md:p-6">
+                            <p class="text-gray-600 mb-2 text-xs md:text-base">Student Savings</p>
+                            <p class="text-2xl md:text-3xl font-bold text-green-600">$360</p>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-lg p-4 md:p-6">
+                            <p class="text-gray-600 mb-2 text-xs md:text-base">Upcoming Trips</p>
+                            <p class="text-2xl md:text-3xl font-bold text-blue-600">1</p>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-lg p-4 md:p-6">
+                            <p class="text-gray-600 mb-2 text-xs md:text-base">Reviews</p>
+                            <p class="text-2xl md:text-3xl font-bold text-yellow-500">★ 4.9</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Student Verification Banner -->
+                    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 md:p-6 mb-6 md:mb-8 rounded-r-lg">
+                        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                            <div class="flex-shrink-0">
+                                <svg class="h-5 w-5 md:h-6 md:w-6 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                                </svg>
+                            </div>
+                            <div class="flex-1">
+                                <p class="text-xs md:text-sm text-yellow-700 font-medium">
+                                    Student verification pending - Upload your student ID to unlock 50% discount!
+                                </p>
+                            </div>
+                            <button class="bg-yellow-400 text-yellow-900 px-4 py-2 rounded font-semibold hover:bg-yellow-500 transition text-sm md:text-base whitespace-nowrap">
+                                Verify Now
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Upcoming Booking -->
+                    <div class="mb-6 md:mb-8">
+                        <h2 class="text-xl md:text-2xl font-bold mb-4">Upcoming Booking</h2>
+                        <div class="bg-white rounded-lg shadow-lg p-4 md:p-6">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                                <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                                    <img src="https://images.unsplash.com/photo-1590362891991-f776e747a588?w=100&h=75&fit=crop" alt="Car" class="w-20 h-15 md:w-24 md:h-18 object-cover rounded">
+                                    <div>
+                                        <h3 class="text-lg md:text-xl font-bold">Toyota Corolla</h3>
+                                        <p class="text-sm md:text-base text-gray-600">Jan 15 - Jan 17, 2025 (2 days)</p>
+                                        <p class="text-xs md:text-sm text-gray-600 mt-1">📍 Pickup: Carlton, Melbourne</p>
+                                    </div>
+                                </div>
+                                <div class="text-left md:text-right">
+                                    <p class="text-2xl md:text-3xl font-bold text-purple-600">$68</p>
+                                    <p class="text-xs md:text-sm text-gray-600">Total (Incl. fees)</p>
+                                    <div class="mt-4 flex flex-col sm:flex-row gap-2">
+                                        <button class="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700 transition text-sm">
+                                            View Details
+                                        </button>
+                                        <button class="border border-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-50 transition text-sm">
+                                            Cancel
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Past Rentals -->
+                    <div>
+                        <h2 class="text-xl md:text-2xl font-bold mb-4">Past Rentals</h2>
+                        <div class="space-y-4">
+                            <div class="bg-white rounded-lg shadow p-4 md:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                                <div class="flex items-center gap-4">
+                                    <img src="https://images.unsplash.com/photo-1617531653332-bd46c24f2068?w=100&h=75&fit=crop" alt="Car" class="w-16 h-12 md:w-20 md:h-15 object-cover rounded">
+                                    <div>
+                                        <h3 class="font-bold text-sm md:text-base">Honda Civic</h3>
+                                        <p class="text-gray-600 text-xs md:text-sm">Dec 1-3, 2024</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-4 w-full sm:w-auto justify-between sm:justify-start">
+                                    <div>
+                                        <span class="star-rating text-sm md:text-base">★★★★★</span>
+                                    </div>
+                                    <button class="text-purple-600 font-semibold hover:underline text-sm md:text-base">
+                                        View Receipt
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-white rounded-lg shadow p-4 md:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                                <div class="flex items-center gap-4">
+                                    <img src="https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=100&h=75&fit=crop" alt="Car" class="w-16 h-12 md:w-20 md:h-15 object-cover rounded">
+                                    <div>
+                                        <h3 class="font-bold text-sm md:text-base">Mazda 3</h3>
+                                        <p class="text-gray-600 text-xs md:text-sm">Nov 15-16, 2024</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-4 w-full sm:w-auto justify-between sm:justify-start">
+                                    <div>
+                                        <span class="star-rating text-sm md:text-base">★★★★★</span>
+                                    </div>
+                                    <button class="text-purple-600 font-semibold hover:underline text-sm md:text-base">
+                                        View Receipt
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <!-- STUDENT INFO PAGE -->
+        <div id="student" class="hidden-page">
+            <section class="py-12 md:py-16">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-8 md:mb-12">
+                        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">🎓 Student Discount Program</h1>
+                        <p class="text-xl md:text-2xl text-gray-600">Save 50% on every rental!</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg shadow-lg p-6 md:p-8 mb-6 md:mb-8">
+                        <h2 class="text-xl md:text-2xl font-bold mb-4 md:mb-6">How It Works</h2>
+                        <div class="space-y-4 md:space-y-6">
+                            <div class="flex items-start gap-4">
+                                <div class="flex-shrink-0 w-8 h-8 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold text-sm md:text-base">1</div>
+                                <div>
+                                    <h3 class="font-bold text-base md:text-lg mb-2">Sign Up</h3>
+                                    <p class="text-sm md:text-base text-gray-600">Create your free CarEase account and indicate you're a student</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="flex-shrink-0 w-8 h-8 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold text-sm md:text-base">2</div>
+                                <div>
+                                    <h3 class="font-bold text-base md:text-lg mb-2">Verify Your Status</h3>
+                                    <p class="text-sm md:text-base text-gray-600">Upload your student ID or use your university email - we'll verify within 24 hours</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="flex-shrink-0 w-8 h-8 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold text-sm md:text-base">3</div>
+                                <div>
+                                    <h3 class="font-bold text-base md:text-lg mb-2">Start Saving!</h3>
+                                    <p class="text-sm md:text-base text-gray-600">Book any car and your 50% discount is applied automatically at checkout</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-r from-purple-600 to-purple-800 text-white rounded-lg shadow-lg p-6 md:p-8 mb-6 md:mb-8">
+                        <h2 class="text-xl md:text-2xl font-bold mb-4 md:mb-6">Eligible Institutions</h2>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <h3 class="font-semibold mb-3 text-sm md:text-base">Universities</h3>
+                                <ul class="space-y-2 text-sm md:text-base">
+                                    <li>✓ University of Melbourne</li>
+                                    <li>✓ Monash University</li>
+                                    <li>✓ RMIT University</li>
+                                    <li>✓ Deakin University</li>
+                                    <li>✓ La Trobe University</li>
+                                    <li>✓ Swinburne University</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold mb-3 text-sm md:text-base">TAFEs & Colleges</h3>
+                                <ul class="space-y-2 text-sm md:text-base">
+                                    <li>✓ Melbourne Polytechnic</li>
+                                    <li>✓ Holmesglen Institute</li>
+                                    <li>✓ Box Hill Institute</li>
+                                    <li>✓ William Angliss Institute</li>
+                                    <li>✓ And more...</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center">
+                        <button onclick="showPage('register')" class="bg-purple-600 text-white px-8 md:px-12 py-3 md:py-4 rounded-lg font-bold text-base md:text-lg hover:bg-purple-700 transition">
+                            Sign Up Now - It's Free!
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <!-- HOW IT WORKS PAGE -->
+        <div id="how-it-works" class="hidden-page">
+            <section class="py-12 md:py-16">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-8 md:mb-12">
+                        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">How CarEase Works</h1>
+                        <p class="text-lg md:text-xl text-gray-600">Renting a car has never been easier</p>
+                    </div>
+                    
+                    <div class="space-y-8 md:space-y-12">
+                        <div class="flex items-start gap-6 md:gap-8">
+                            <div class="flex-shrink-0 w-12 h-12 md:w-16 md:h-16 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold text-xl md:text-2xl">1</div>
+                            <div class="flex-1">
+                                <h3 class="text-xl md:text-2xl font-bold mb-2">Browse & Compare</h3>
+                                <p class="text-sm md:text-base text-gray-600">Search hundreds of cars in your area. Filter by price, type, and features. See real photos and honest reviews from students like you.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-6 md:gap-8">
+                            <div class="flex-shrink-0 w-12 h-12 md:w-16 md:h-16 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold text-xl md:text-2xl">2</div>
+                            <div class="flex-1">
+                                <h3 class="text-xl md:text-2xl font-bold mb-2">Book Instantly</h3>
+                                <p class="text-sm md:text-base text-gray-600">Found the perfect car? Book it in seconds. Your student discount is applied automatically. No hidden fees, no surprises.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-6 md:gap-8">
+                            <div class="flex-shrink-0 w-12 h-12 md:w-16 md:h-16 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold text-xl md:text-2xl">3</div>
+                            <div class="flex-1">
+                                <h3 class="text-xl md:text-2xl font-bold mb-2">Pick Up Your Car</h3>
+                                <p class="text-sm md:text-base text-gray-600">Meet the owner at the pickup location. Do a quick inspection together. Get the keys and you're ready to roll!</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-6 md:gap-8">
+                            <div class="flex-shrink-0 w-12 h-12 md:w-16 md:h-16 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold text-xl md:text-2xl">4</div>
+                            <div class="flex-1">
+                                <h3 class="text-xl md:text-2xl font-bold mb-2">Drive & Enjoy</h3>
+                                <p class="text-sm md:text-base text-gray-600">Use the car for whatever you need - weekend trips, dates, Uber, deliveries. Drive with confidence knowing you're covered.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-6 md:gap-8">
+                            <div class="flex-shrink-0 w-12 h-12 md:w-16 md:h-16 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold text-xl md:text-2xl">5</div>
+                            <div class="flex-1">
+                                <h3 class="text-xl md:text-2xl font-bold mb-2">Return & Review</h3>
+                                <p class="text-sm md:text-base text-gray-600">Return the car clean with the same fuel level. Leave a review to help other students. Done!</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mt-8 md:mt-12">
+                        <button onclick="showPage('vehicles')" class="bg-purple-600 text-white px-8 md:px-12 py-3 md:py-4 rounded-lg font-bold text-base md:text-lg hover:bg-purple-700 transition">
+                            Start Browsing Cars
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8 md:py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+                <div class="col-span-2 md:col-span-1">
+                    <div class="flex items-center mb-4">
+                        <svg class="h-6 w-6 md:h-8 md:w-8 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        </svg>
+                        <span class="ml-2 text-xl md:text-2xl font-bold">CarEase</span>
+                    </div>
+                    <p class="text-sm md:text-base text-gray-400">Affordable car rental for students across Melbourne.</p>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-3 md:mb-4 text-sm md:text-base">Company</h4>
+                    <ul class="space-y-2 text-gray-400 text-xs md:text-sm">
+                        <li><a href="#" class="hover:text-white">About Us</a></li>
+                        <li><a href="#" class="hover:text-white">Careers</a></li>
+                        <li><a href="#" class="hover:text-white">Blog</a></li>
+                        <li><a href="#" class="hover:text-white">Press</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-3 md:mb-4 text-sm md:text-base">Support</h4>
+                    <ul class="space-y-2 text-gray-400 text-xs md:text-sm">
+                        <li><a href="#" class="hover:text-white">Help Center</a></li>
+                        <li><a href="#" class="hover:text-white">Safety</a></li>
+                        <li><a href="#" class="hover:text-white">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-white">Insurance</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-3 md:mb-4 text-sm md:text-base">Legal</h4>
+                    <ul class="space-y-2 text-gray-400 text-xs md:text-sm">
+                        <li><a href="#" class="hover:text-white">Terms & Conditions</a></li>
+                        <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-6 md:mt-8 pt-6 md:pt-8 text-center text-gray-400 text-xs md:text-sm">
+                <p>&copy; 2025 CarEase. All rights reserved. Made with ❤️ in Melbourne.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Page navigation
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('[id^="home"], [id^="vehicles"], [id^="vehicle-detail"], [id^="login"], [id^="register"], [id^="dashboard"], [id^="student"], [id^="how-it-works"]');
+            pages.forEach(page => {
+                page.classList.remove('active-page');
+                page.classList.add('hidden-page');
+            });
+            
+            // Show selected page
+            const selectedPage = document.getElementById(pageId);
+            if (selectedPage) {
+                selectedPage.classList.remove('hidden-page');
+                selectedPage.classList.add('active-page');
+            }
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+            
+            // Close mobile menu if open
+            const mobileMenu = document.getElementById('mobileMenu');
+            if (mobileMenu && mobileMenu.classList.contains('active')) {
+                mobileMenu.classList.remove('active');
+            }
+        }
+        
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            if (mobileMenu) {
+                mobileMenu.classList.toggle('active');
+            }
+        }
+        
+        // Student checkbox toggle
+        document.getElementById('studentCheck')?.addEventListener('change', function(e) {
+            const studentFields = document.getElementById('studentFields');
+            if (studentFields) {
+                studentFields.style.display = e.target.checked ? 'block' : 'none';
+            }
+        });
+    </script>
+</body>
+</html>
